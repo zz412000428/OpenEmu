@@ -344,14 +344,7 @@ NSComparisonResult headerSortingFunction(id obj1, id obj2, void *context)
         {
             [sectionHeader setFrameOrigin:(NSPoint){0,MAX(minY, NSMaxY(visibleSectionRect)-sectionTitleHeight)}];
             minY = NSMaxY(visibleSectionRect);
-
-            if(minY>=NSMaxY(visibleRect)-sectionTitleHeight-1.0)
-                [sectionHeader setPinned:YES];
-            else
-                [sectionHeader setPinned:NO];
         }
-        else
-            [sectionHeader setPinned:NO];
     }
     ;
 }

@@ -29,43 +29,27 @@ import Cocoa
 @objc(OEPreferencesControlsBox)
 class PreferencesControlsBox: NSView {
     
-    lazy var lineColor = NSColor(deviceRed: 0.45, green: 0.24, blue: 0, alpha: 1)
-    lazy var topHighlightColor = NSColor(deviceRed: 1, green: 0.92, blue: 0, alpha: 0.14)
-    lazy var bottomHighlightColor = NSColor(deviceRed: 1, green: 0.92, blue: 0, alpha: 0.3)
+    private let lineColor = NSColor.darkGray
     
     override func draw(_ dirtyRect: NSRect) {
         
-        NSImage(named: "wood_inset_box")?.draw(in: bounds)
+        NSImage(named: "controls_box")?.draw(in: bounds)
         
         var lineRect = bounds
         lineRect.size.height = 1
-        lineRect.size.width -= 4
-        lineRect.origin.x += 2
+        lineRect.size.width -= 2
+        lineRect.origin.x += 1
         
         // Draw top separator.
         
-        lineRect.origin.y = 317
-        
-        topHighlightColor.setFill()
-        lineRect.fill()
-        
-        lineRect.origin.y -= 1
+        lineRect.origin.y = frame.size.height - 48
         lineColor.setFill()
-        lineRect.fill(using: .sourceOver)
+        lineRect.fill(using: .sourceIn)
         
         // Draw bottom separator.
         
-        lineRect.origin.y = 46
-        
+        lineRect.origin.y = 48
         lineColor.setFill()
-        lineRect.fill()
-        
-        lineRect.origin.y -= 1
-        bottomHighlightColor.setFill()
-        lineRect.fill(using: .sourceOver)
-    }
-    
-    override var isFlipped: Bool {
-        return false
+        lineRect.fill(using: .sourceIn)
     }
 }

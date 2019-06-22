@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "wood_textfield.png",
+      "filename" : "controls_box.png",
       "idiom" : "universal",
       "resizing" : {
         "cap-insets" : {
-          "bottom" : 5,
-          "left" : 2,
-          "right" : 2,
-          "top" : 5
+          "bottom" : 16,
+          "left" : 16,
+          "right" : 16,
+          "top" : 16
         },
         "center" : {
-          "height" : 14,
+          "height" : 1,
           "mode" : "tile",
           "width" : 1
         },
@@ -20,17 +20,17 @@
       "scale" : "1x"
     },
     {
-      "filename" : "wood_textfield@2x.png",
+      "filename" : "controls_box@2x.png",
       "idiom" : "universal",
       "resizing" : {
         "cap-insets" : {
-          "bottom" : 10,
-          "left" : 4,
-          "right" : 4,
-          "top" : 10
+          "bottom" : 32,
+          "left" : 32,
+          "right" : 32,
+          "top" : 32
         },
         "center" : {
-          "height" : 28,
+          "height" : 2,
           "mode" : "tile",
           "width" : 2
         },

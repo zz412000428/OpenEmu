@@ -27,32 +27,31 @@ import Cocoa
 @objc(OEControlsPopUpButtonCell)
 final class ControlsPopUpButtonCell: NSPopUpButtonCell {
     
-    override func drawBorderAndBackground(withFrame cellFrame: NSRect, in controlView: NSView) {
-        NSImage(named: "wood_popup_button")?.draw(in: cellFrame)
-    }
-    
     override func drawImage(_ image: NSImage, withFrame frame: NSRect, in controlView: NSView) {
         image.draw(in: frame)
     }
     
     override func titleRect(forBounds cellFrame: NSRect) -> NSRect {
-        var rect = super.titleRect(forBounds: cellFrame)
-        rect.origin.y += 1
         if #available(macOS 10.16, *) {
-            rect.origin.y += 9
+            return super.titleRect(forBounds: cellFrame)
         }
+        var rect = super.titleRect(forBounds: cellFrame)
+        rect.origin.y -= 2
         return rect
     }
     
     override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
+        if #available(macOS 10.16, *) {
+            return super.drawInterior(withFrame: cellFrame, in: controlView)
+        }
         let textRect = titleRect(forBounds: cellFrame)
         let imageRect = self.imageRect(forBounds: cellFrame)
 
-        if !NSIsEmptyRect(textRect) {
+        if !textRect.isEmpty {
             let attributedTitle = NSAttributedString(string: title, attributes: ControlsPopUpButtonCell.attributes)
             drawTitle(attributedTitle, withFrame: textRect, in: controlView)
         }
-        if !NSIsEmptyRect(imageRect),
+        if !imageRect.isEmpty,
            let image = image {
             drawImage(image, withFrame: imageRect, in: controlView)
         }
@@ -60,13 +59,8 @@ final class ControlsPopUpButtonCell: NSPopUpButtonCell {
     
     private static let attributes: [NSAttributedString.Key : Any] = {
         
-        let font = NSFont.boldSystemFont(ofSize: 11)
-        let color = NSColor.black
-        
-        let shadow = NSShadow()
-        shadow.shadowBlurRadius = 1
-        shadow.shadowColor = NSColor(white: 1, alpha: 0.25)
-        shadow.shadowOffset = NSMakeSize(0, -1)
+        let font = NSFont.systemFont(ofSize: 13)
+        let color = NSColor.labelColor
         
         let style = NSMutableParagraphStyle()
         style.lineBreakMode = .byTruncatingTail
@@ -74,9 +68,8 @@ final class ControlsPopUpButtonCell: NSPopUpButtonCell {
         let attributes: [NSAttributedString.Key : Any] =
                                           [.font: font,
                                 .foregroundColor: color,
-                                         .shadow: shadow,
                                  .paragraphStyle: style,
-                                 .baselineOffset: -3]
+                                 .baselineOffset: -2]
         
         return attributes
     }()

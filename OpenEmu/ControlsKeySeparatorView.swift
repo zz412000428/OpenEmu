@@ -27,8 +27,7 @@ import Cocoa
 @objc(OEControlsKeySeparatorView)
 class ControlsKeySeparatorView: NSView {
     
-    let topColor = NSColor(deviceRed: 85/255, green: 45/255, blue: 0, alpha: 1)
-    let bottomColor = NSColor(deviceRed: 1, green: 1, blue: 0, alpha: 0.2)
+    private let lineColor = NSColor.darkGray
     
     override var isOpaque: Bool {
         return false
@@ -40,11 +39,7 @@ class ControlsKeySeparatorView: NSView {
         lineRect.size.height = 1
         lineRect.origin.y = bounds.size.height/2
         
-        topColor.setFill()
-        lineRect.fill()
-        
-        lineRect.origin.y -= 1
-        bottomColor.setFill()
+        lineColor.setFill()
         lineRect.fill(using: .sourceOver)
     }
 }

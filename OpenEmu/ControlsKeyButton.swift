@@ -31,7 +31,7 @@ class ControlsKeyButton: NSButton {
     
     override func draw(_ dirtyRect: NSRect) {
         
-        let image = state == .on ? NSImage(named: "wood_textfield_focus") : NSImage(named: "wood_textfield")
+        let image = state == .on ? NSImage(named: "controls_textfield_focus") : NSImage(named: "controls_textfield")
         image?.draw(in: dirtyRect)
         
         let p = NSPoint(x: bounds.origin.x + 4, y: bounds.origin.y + (isFlipped ? 4 : 6))
@@ -40,17 +40,11 @@ class ControlsKeyButton: NSButton {
     
     private static let attributes: [NSAttributedString.Key : Any]? = {
         let font = NSFont.boldSystemFont(ofSize: 11)
-        let color = NSColor.black
-        
-        let shadow = NSShadow()
-        shadow.shadowBlurRadius = 1
-        shadow.shadowColor = NSColor(white: 1, alpha: 0.25)
-        shadow.shadowOffset = NSMakeSize(0, -1)
+        let color = NSColor.labelColor
         
         let attributes: [NSAttributedString.Key : Any] =
                                           [.font: font,
-                                .foregroundColor: color,
-                                         .shadow: shadow]
+                                .foregroundColor: color]
         
         return attributes
     }()

@@ -29,14 +29,8 @@ final class ControlsKeyHeadline: Label {
     
     override func setupAttributes() {
         
-        let shadow = NSShadow()
-        shadow.shadowBlurRadius = 1
-        shadow.shadowColor = NSColor(white: 1, alpha: 0.25)
-        shadow.shadowOffset = NSMakeSize(0, -1)
-        
-        font = .boldSystemFont(ofSize: 11.5)
-        textColor = .black
-        textShadow = shadow
+        font = .systemFont(ofSize: 11.5)
+        textColor = .labelColor
     }
 }
 
@@ -45,14 +39,8 @@ final class ControlsKeyLabel: Label {
     
     override func setupAttributes() {
         
-        let shadow = NSShadow()
-        shadow.shadowBlurRadius = 1
-        shadow.shadowColor = NSColor(white: 1, alpha: 0.25)
-        shadow.shadowOffset = NSMakeSize(0, -1)
-        
-        font = .boldSystemFont(ofSize: 11)
-        textColor = .black
-        textShadow = shadow
+        font = .systemFont(ofSize: 11)
+        textColor = .labelColor
         alignment = .right
     }
 }
@@ -62,14 +50,8 @@ final class ControlsInputLabel: Label {
     
     override func setupAttributes() {
         
-        let shadow = NSShadow()
-        shadow.shadowBlurRadius = 1
-        shadow.shadowColor = NSColor(white: 1, alpha: 0.25)
-        shadow.shadowOffset = NSMakeSize(0, -1)
-        
-        font = .boldSystemFont(ofSize: 11)
-        textColor = .black
-        textShadow = shadow
+        font = .systemFont(ofSize: 11)
+        textColor = .labelColor
         stringValue = NSLocalizedString("Input:", comment: "Controls preferences, input selection label")
     }
 }
