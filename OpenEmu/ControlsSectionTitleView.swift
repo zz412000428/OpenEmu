@@ -29,33 +29,54 @@ class ControlsSectionTitleView: NSView {
     
     private let leftGap: CGFloat = 16
     
-    private lazy var string = NSAttributedString(string: stringValue, attributes: ControlsSectionTitleView.attributes)
-    
     @objc var stringValue = ""
+    
+    let visualEffectView: NSVisualEffectView = NSVisualEffectView()
+    
+    let imageView: NSImageView = {
+        let imageView = NSImageView(image: NSImage(named: "controls_bg")!)
+        imageView.imageScaling = .scaleAxesIndependently
+        return imageView
+    }()
+    
+    let textField: NSTextField = {
+        let textField = NSTextField(labelWithString: "")
+        textField.font = .boldSystemFont(ofSize: 11)
+        textField.textColor = .labelColor
+        return textField
+    }()
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+    
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        commonInit()
+    }
+    
+    func commonInit() {
+        
+        addSubview(visualEffectView)
+        addSubview(imageView)
+        addSubview(textField)
+    }
     
     override func draw(_ dirtyRect: NSRect) {
         
-        NSImage(named: "controls_bg")?.draw(in: dirtyRect)
-        string.draw(in: titleRect)
+        visualEffectView.frame = bounds
+        imageView.frame = bounds
+        textField.stringValue = stringValue
+        textField.frame = titleRect
     }
     
     private var titleRect: NSRect {
         var rect = bounds
         
-        rect.origin.y -= (rect.size.height-string.size().height)/2
+        rect.origin.y -= (rect.size.height-textField.attributedStringValue.size().height)/2
         rect.origin.x += leftGap
         
         return backingAlignedRect(rect, options: .alignAllEdgesNearest)
     }
-    
-    private static let attributes: [NSAttributedString.Key : Any]? = {
-        let font = NSFont.boldSystemFont(ofSize: 11)
-        let color = NSColor.labelColor
-        
-        let attributes: [NSAttributedString.Key : Any] =
-                                          [.font: font,
-                                .foregroundColor: color]
-        
-        return attributes
-    }()
 }
