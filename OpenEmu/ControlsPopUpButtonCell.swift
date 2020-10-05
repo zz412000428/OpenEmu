@@ -35,42 +35,25 @@ final class ControlsPopUpButtonCell: NSPopUpButtonCell {
         if #available(macOS 10.16, *) {
             return super.titleRect(forBounds: cellFrame)
         }
-        var rect = super.titleRect(forBounds: cellFrame)
-        rect.origin.y -= 2
-        return rect
+        var titleRect = super.titleRect(forBounds: cellFrame)
+        titleRect.origin.y -= 2
+        return titleRect
     }
     
     override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
         if #available(macOS 10.16, *) {
             return super.drawInterior(withFrame: cellFrame, in: controlView)
         }
-        let textRect = titleRect(forBounds: cellFrame)
+        var titleRect = self.titleRect(forBounds: cellFrame)
+        titleRect.origin.y += 2
         let imageRect = self.imageRect(forBounds: cellFrame)
-
-        if !textRect.isEmpty {
-            let attributedTitle = NSAttributedString(string: title, attributes: ControlsPopUpButtonCell.attributes)
-            drawTitle(attributedTitle, withFrame: textRect, in: controlView)
+        
+        if !titleRect.isEmpty {
+            drawTitle(attributedTitle, withFrame: titleRect, in: controlView)
         }
         if !imageRect.isEmpty,
            let image = image {
             drawImage(image, withFrame: imageRect, in: controlView)
         }
     }
-    
-    private static let attributes: [NSAttributedString.Key : Any] = {
-        
-        let font = NSFont.systemFont(ofSize: 13)
-        let color = NSColor.labelColor
-        
-        let style = NSMutableParagraphStyle()
-        style.lineBreakMode = .byTruncatingTail
-        
-        let attributes: [NSAttributedString.Key : Any] =
-                                          [.font: font,
-                                .foregroundColor: color,
-                                 .paragraphStyle: style,
-                                 .baselineOffset: -2]
-        
-        return attributes
-    }()
 }
