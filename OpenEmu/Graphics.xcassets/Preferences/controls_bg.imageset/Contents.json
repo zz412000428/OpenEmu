@@ -3,6 +3,16 @@
     {
       "filename" : "controls_bg.png",
       "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "controls_bg_dark.png",
+      "idiom" : "universal"
     }
   ],
   "info" : {

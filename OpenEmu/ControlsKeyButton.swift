@@ -31,7 +31,7 @@ class ControlsKeyButton: NSButton {
     
     override func draw(_ dirtyRect: NSRect) {
         
-        let image = state == .on ? NSImage(named: "controls_textfield_focus") : NSImage(named: "controls_textfield")
+        let image = state == .on ? NSImage(named: "controls_textfield_focus")?.image(with: .controlAccentColor) : NSImage(named: "controls_textfield")
         image?.draw(in: dirtyRect)
         
         let p = NSPoint(x: bounds.origin.x + 4, y: bounds.origin.y + (isFlipped ? 4 : 6))

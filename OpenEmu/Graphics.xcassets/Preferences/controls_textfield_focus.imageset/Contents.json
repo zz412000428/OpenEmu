@@ -5,7 +5,7 @@
       "scale" : "1x"
     },
     {
-      "filename" : "controls_textfield@2x.png",
+      "filename" : "controls_textfield_focus@2x.png",
       "idiom" : "universal",
       "resizing" : {
         "cap-insets" : {
@@ -28,5 +28,8 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "template-rendering-intent" : "template"
   }
 }
